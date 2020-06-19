@@ -1,0 +1,120 @@
+process {
+    Id = "deploymentprocess-Projects-2"
+    OwnerId = "Projects-2"
+    IsFrozen = false
+    Version = 1
+    SpaceId = "Spaces-1"
+    Steps {
+        deploy_kubernetes_containers {
+            Id = "2943ba87-0e7a-4fd8-9a11-f606433ab176"
+            Name = "Deploy Kubernetes containers"
+            Condition = "Success"
+            StartTrigger = "StartAfterPrevious"
+            PackageRequirement = "LetOctopusDecide"
+            Actions {
+                deploy_kubernetes_containers {
+                    Id = "2f9fa9d3-42f4-4c8a-927c-45b14be36a42"
+                    Name = "Deploy Kubernetes containers"
+                    ActionType = "Octopus.KubernetesDeployContainers"
+                    Container {
+                    }
+                    IsDisabled = false
+                    IsRequired = false
+                    Environments = []
+                    ExcludedEnvironments = []
+                    Channels = []
+                    TenantTags = []
+                    Packages {
+                        asdf {
+                            Id = "ce1e737e-25e2-49d2-843d-07efc5bf3594"
+                            Name = "asdf"
+                            PackageId = "hello-world"
+                            FeedId = "Feeds-1002"
+                            AcquisitionLocation = "NotAcquired"
+                            Properties {
+                            }
+                        }
+                    }
+                    Condition = "Success"
+                    Properties {
+                        octopus.action.enabledfeatures {
+                            Key = "Octopus.Action.EnabledFeatures"
+                            Value {
+                                Value = "Octopus.Features.KubernetesService,Octopus.Features.KubernetesIngress,Octopus.Features.KubernetesConfigMap,Octopus.Features.KubernetesSecret"
+                                IsSensitive = false
+                                HasValue = true
+                            }
+                        }
+                        octopus.action.kubernetescontainers.servicetype {
+                            Key = "Octopus.Action.KubernetesContainers.ServiceType"
+                            Value {
+                                Value = "ClusterIP"
+                                IsSensitive = false
+                                HasValue = true
+                            }
+                        }
+                        octopus.action.kubernetescontainers.ingressannotations {
+                            Key = "Octopus.Action.KubernetesContainers.IngressAnnotations"
+                            Value {
+                                Value = "[]"
+                                IsSensitive = false
+                                HasValue = true
+                            }
+                        }
+                        octopus.action.kubernetescontainers.replicas {
+                            Key = "Octopus.Action.KubernetesContainers.Replicas"
+                            Value {
+                                Value = "1"
+                                IsSensitive = false
+                                HasValue = true
+                            }
+                        }
+                        octopus.action.kubernetescontainers.deploymentstyle {
+                            Key = "Octopus.Action.KubernetesContainers.DeploymentStyle"
+                            Value {
+                                Value = "RollingUpdate"
+                                IsSensitive = false
+                                HasValue = true
+                            }
+                        }
+                        octopus.action.kubernetescontainers.deploymentwait {
+                            Key = "Octopus.Action.KubernetesContainers.DeploymentWait"
+                            Value {
+                                Value = "Wait"
+                                IsSensitive = false
+                                HasValue = true
+                            }
+                        }
+                        octopus.action.kubernetescontainers.deploymentname {
+                            Key = "Octopus.Action.KubernetesContainers.DeploymentName"
+                            Value {
+                                Value = "de"
+                                IsSensitive = false
+                                HasValue = true
+                            }
+                        }
+                        octopus.action.kubernetescontainers.containers {
+                            Key = "Octopus.Action.KubernetesContainers.Containers"
+                            Value {
+                                Value = "[{"Name":"asdf","Ports":[],"EnvironmentVariables":[],"SecretEnvironmentVariables":[],"ConfigMapEnvironmentVariables":[],"FieldRefEnvironmentVariables":[],"VolumeMounts":[],"Resources":{"requests":{"memory":"","cpu":"","ephemeralStorage":""},"limits":{"memory":"","cpu":"","ephemeralStorage":""}},"LivenessProbe":{"failureThreshold":"","initialDelaySeconds":"","periodSeconds":"","successThreshold":"","timeoutSeconds":"","type":"","exec":{"command":[]},"httpGet":{"host":"","path":"","port":"","scheme":"","httpHeaders":[]},"tcpSocket":{"host":"","port":""}},"ReadinessProbe":{"failureThreshold":"","initialDelaySeconds":"","periodSeconds":"","successThreshold":"","timeoutSeconds":"","type":"","exec":{"command":[]},"httpGet":{"host":"","path":"","port":"","scheme":"","httpHeaders":[]},"tcpSocket":{"host":"","port":""}},"Command":[],"Args":[],"SecurityContext":{"allowPrivilegeEscalation":"","privileged":"","readOnlyRootFilesystem":"","runAsGroup":"","runAsNonRoot":"","runAsUser":"","capabilities":{"add":[],"drop":[]},"seLinuxOptions":{"level":"","role":"","type":"","user":""}},"TerminationMessagePath":"","TerminationMessagePolicy":"","Lifecycle":{"PreStop":null,"PostStart":null}}]"
+                                IsSensitive = false
+                                HasValue = true
+                            }
+                        }
+                    }
+                }
+            }
+            Properties {
+                octopus.action.targetroles {
+                    Key = "Octopus.Action.TargetRoles"
+                    Value {
+                        Value = "dev"
+                        IsSensitive = false
+                        HasValue = true
+                    }
+                }
+            }
+        }
+    }
+    RelatedDocumentIds = []
+}
